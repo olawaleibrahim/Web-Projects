@@ -29,3 +29,9 @@ div {
 .boold {
     font-weight: bold;
 }
+
+#input {
+    height: auto;
+    width: 40%;
+    background-color: rgb(248, 246, 245);
+}
