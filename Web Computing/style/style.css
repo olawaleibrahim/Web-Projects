@@ -8,7 +8,7 @@ p {
 }
 
 div {
-    height: 250px;
+    height: auto;
     width: auto;
     background-color: cadetblue;
     margin: 30px;
@@ -34,4 +34,10 @@ div {
     height: auto;
     width: 40%;
     background-color: rgb(248, 246, 245);
+}
+
+button {
+    height: 20px;
+    width: auto;
+    background-color: orange;
 }
