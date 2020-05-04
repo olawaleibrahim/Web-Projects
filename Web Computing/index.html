@@ -12,8 +12,15 @@
             border: 1px solid black;
             text-align: center;
         }
-        
-
+        ol li {
+            color: brown;
+        }
+        input[type=text] {
+            background-color: burlywood;
+        }
+        input[type=password] {
+            background-color: cadetblue;
+        }
         </style>
         <body>
             <h1>Welcome Here!</h1>
@@ -24,6 +31,33 @@
                 <p>Welcome to the this section</p>
                 <p>This is a new feature.</p>
                 <p><a href="contacts.html">Contacts page</a></p>
+                <div id="input">
+                    <form>
+                    <input name="name", type="text", placeholder="Your Full Name"> </br>
+                    <input name="password", type="password", placeholder="Password"> </br>
+                    Your Current Level:
+                    <input name="level", type="radio", value="100Level"> 100Level
+                    <input name="level", type="radio", value="200Level"> 200Level
+                    <input name="level", type="radio", value="300Level"> 300Level
+                    <input name="level", type="radio", value="400Level"> 400Level
+                    <input name="level", type="radio", value="500Level"> 500Level
+                    </form>
+                </div>
+            </div>
+            <div>
+                <ol>
+                    <li>First Element
+                        <ul>First nested element</ul>
+                        <ul>Second nested element</ul>
+                    </li>
+                    <li>
+                        New item
+                    </li>
+                </ol>
+                <ul>
+                    <li>Unordered one</li>
+                    <li>Unordered two</li>
+                </ul>
             </div>
             <div>
                 Hello World
