@@ -8,8 +8,6 @@ p {
 }
 
 div {
-    height: 100%;
-    width: auto;
     background-color: cadetblue;
     margin: 30px;
     padding: 15px;
