@@ -33,3 +33,20 @@ div {
     width: 40%;
     background-color: rgb(248, 246, 245);
 }
+
+@media print {
+    .screen-only {
+        display: none;
+    }
+}
+
+@media (max-width: 499px) {
+    body {
+        background-color: rgb(238, 177, 189)
+    }
+}
+@media (min-width: 500px) {
+    body {
+        background-color: rgb(188, 229, 245)
+    }
+}
