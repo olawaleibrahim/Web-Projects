@@ -22,6 +22,17 @@
             background-color: cadetblue;
         }
 
+
+        @media (min-width: 500px) {
+            h1::before {
+                content: "Welcome to my Web Page!"
+            }
+        }
+        @media (max-width: 499px) {
+            h1::before {
+                content: "Welcome!"
+            }
+        
         button:hover{
             background-color: green;
         }
@@ -34,13 +45,14 @@
         p::selection{
             color: blue;
             background-color: yellow;
+
         }
         </style>
         <body>
-            <h1>Welcome Here!</h1>
+            <h1></h1>
             <p id="top">This is the <span class="boold">first</span> paragraph</p>
             <p id="top", style="text-align: center; color:darkgoldenrod">And this is the <span class="boold">second </span>paragraph</p>
-            <p id="middle">This is the <span class="boold">third</span></p>
+            <p id="middle", class="screen-only">This is the <span class="boold">third</span></p>
             <div>
                 <p>Welcome to the this section</p>
                 HELOOOOOO
