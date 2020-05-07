@@ -22,6 +22,7 @@
             background-color: cadetblue;
         }
 
+
         @media (min-width: 500px) {
             h1::before {
                 content: "Welcome to my Web Page!"
@@ -31,6 +32,20 @@
             h1::before {
                 content: "Welcome!"
             }
+=======
+        button:hover{
+            background-color: green;
+        }
+        
+        a::before{
+            content: "\21d2  ";
+            font-weight: bold;
+            }
+        
+        p::selection{
+            color: blue;
+            background-color: yellow;
+
         }
         </style>
         <body>
@@ -52,7 +67,8 @@
                     <input name="level", type="radio", value="200Level"> 200Level
                     <input name="level", type="radio", value="300Level"> 300Level
                     <input name="level", type="radio", value="400Level"> 400Level
-                    <input name="level", type="radio", value="500Level"> 500Level
+                    <input name="level", type="radio", value="500Level"> 500Level</br>
+                    <button name="Submit", type="button">Submit</button>
                     </form>
                 </div>
             </div>
