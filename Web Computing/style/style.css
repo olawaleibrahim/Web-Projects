@@ -46,6 +46,7 @@ div {
         background-color: rgb(238, 177, 189)
     }
 }
+
 @media (min-width: 500px) {
     body {
         background-color: rgb(188, 229, 245)
@@ -56,4 +57,42 @@ button {
     height: 20px;
     width: auto;
     background-color: orange;
+}
+
+@media (min-width: 500px) {
+    h1::before {
+        content: "Welcome to my Web Page!";
+    }
+}
+@media (max-width: 499px) {
+    h1::before {
+        content: "Welcome!";
+    }
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.container > div {
+    background-color: darkslategray;
+    font-size: 24px;
+    margin: 20px;
+    padding: 20px;
+    width: 200px;
+}
+
+.grid {
+    padding: 20px;
+    background-color: darkslategray;
+    display: grid;
+    grid-template-columns: 300px 300px auto;
+    grid-row-gap: 0px;
+    grid-column-gap: 0px;
+}
+
+.grid-item {
+    font-size: 20px;
+    background-color: white;
 }
