@@ -45,4 +45,12 @@ class Users2(db.Model):
         self.first_name = first_name
         self.last_name = last_name
 
+class Books1(db.Model):
+    __tablename__ = "books1"
+    idd = db.Column(db.Integer, nullable=False, primary_key=True)
+    isbn = db.Column(db.String, nullable=False)
+    year = db.Column(db.Integer, nullable=False)
+    author = db.Column(db.String, nullable=False)
+    title = db.Column(db.String, nullable=False)
+
         
