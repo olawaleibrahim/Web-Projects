@@ -53,4 +53,22 @@ class Books1(db.Model):
     author = db.Column(db.String, nullable=False)
     title = db.Column(db.String, nullable=False)
 
+class Reviews(db.Model):
+    __tablename__ = "reviews"
+    counter = 1
+    
+    idd = db.Column(db.Integer, nullable=False, primary_key=True)
+    review = db.Column(db.String, nullable=False)
+    title = db.Column(db.String, nullable=False)
+    book_id = db.Column(db.Integer, db.ForeignKey('books.idd'))   
+    score = db.Column(db.Integer, nullable=True)
+
+    def __init__(self, idd, review, score, title, book_id):
+        self.idd = self.counter
+        self.counter += 1     
+
         
+        self.review = review
+        self.title = title
+        self.book_id = book_id
+        self.score = score
