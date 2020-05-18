@@ -9,10 +9,39 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-8">
-            <h2>{{book.title}}</h2>
-            <p>Author: {{book.author}}</p>
-            <p>Year of Publication: {{book.year}}</p>
-            <p>ISBN: {{book.isbn}}</p>
+            <div class="container">
+                <h2>{{book.title}}</h2>
+                <p>Author: {{book.author}}</p>
+                <p>Year of Publication: {{book.year}}</p>
+                <p>ISBN: {{book.isbn}}</p>
+            </div>
+            <div class="container">
+                <form action="{{ url_for('submitted') }}", method="POST">
+                    <label>Leave a review for book:</label></br>
+                    <input type="radio" name="book_title", value="{{book.title}}">{{book.title}}</br>
+                    <input type="radio" name="review" value="1">1
+                    <input type="radio" name="review" value="2">2
+                    <input type="radio" name="review" value="3">3
+                    <input type="radio" name="review" value="4">4
+                    <input type="radio" name="review" value="5">5</br>
+                    <label>Leave a review:</label></br>
+                    <input style="width: 500px; height: 100px;" type="textarea" name="description" placeholder="Enter a review"></br>
+                    <div class="form-group">
+                        <button name="button"  class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+            <div class="container">
+                <h2>Previous reviews:</h2>
+                <ol>
+                    {% for review in reviews %}
+                    <li>{{review}}</li>
+                    {% endfor %}
+                </ol>
+                {% for avg in avgscore %}
+                <p>The book has an average review of {{avg}}</p>
+                {% endfor %}
+            </div>
         </div>
     </div>
     <div class="col-sm-4">
