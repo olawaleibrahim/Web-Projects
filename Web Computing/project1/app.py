@@ -70,8 +70,22 @@ def book(book_id):
     if book == None:
         return render_template("error.html", message="No such book exist")
     else:
+        review1 = db1.execute("SELECT * FROM reviews WHERE book_id=:idd", {"idd": book_id}).fetchall()
+        avg = db1.execute("SELECT AVG(reviews.score) FROM reviews WHERE book_id=:idd", {"idd": book_id})
+        db1.commit()
+        reviews = []
+        scores = []
+        avgscore = []
+        for review in review1:
+            reviews.append(review.review)
+            db1.commit()
+        for review in review1:
+            scores.append(review.score)
+            db1.commit()
+        for i in avg:
+            avgscore.append(i)
 
-        return render_template("book.html", book=book)
+        return render_template("book.html", book=book, reviews=reviews, scores=scores, avgscore=avgscore)
 
 
 @app.route('/results', methods=['POST', 'GET'])
@@ -79,22 +93,47 @@ def results():
     if request.method == 'GET':
         return render_template("error.html", message="Access Denied. Sign in and search for book")
     else:
-        isbn = request.form.get("isbn")
-        title = request.form.get("title")
-        author = request.form.get("author")
+        value = request.form.get("value")
+        #title = request.form.get("title")
+        #author = request.form.get("author")
 
-        if (db1.execute("SELECT * FROM books WHERE isbn=:isbn", {"isbn": isbn}).rowcount == 0) and (db1.execute("SELECT * FROM books WHERE title=:title", {"title": title}).rowcount == 0) and (db1.execute("SELECT * FROM books WHERE author=:author", {"author": author}).rowcount == 0):
+        if (db1.execute("SELECT * FROM books WHERE isbn=:value", {"value": value}).rowcount == 0) and (db1.execute("SELECT * FROM books WHERE title=:value", {"value": value}).rowcount == 0) and (db1.execute("SELECT * FROM books WHERE author=:value", {"value": value}).rowcount == 0):
             return render_template("error.html", message="No book with matching records")
 
         else:
-            books = db1.execute("SELECT * FROM books WHERE author=:author OR title=:title OR isbn=:isbn", {"author": author,"title": title, "isbn": isbn}).fetchall()
-            
+            books = db1.execute("SELECT * FROM books WHERE author LIKE :value OR title LIKE :value OR isbn LIKE :value", {"value": value,"value": value, "value": value}).fetchall()
+            #books = Books.query.filter(Books.title.like('%title%')).all()
+            db.session.commit()
             return render_template("results.html", books=books)
+
+@app.route('/submitted', methods=['POST', 'GET'])
+def submitted():
+    if request.method == 'GET':
+        return render_template("error.html", message="Invalid request.")
+    else:
+        score = request.form.get("review")
+        review = request.form.get("description")
+        title = request.form.get("book_title")
+
+        if score == None or title == None:
+            return render_template("error.html", message="Please give a review or select book title")
+        else:
+            book = db1.execute("SELECT * FROM books WHERE title=:title", {'title': title}).fetchone()
+            
+            book_id = book.idd
+
+            db1.execute("INSERT INTO reviews (score, review, title, book_id) VALUES (:score, :review, :title, :book_id)",
+            {"score": score, "review": review, "title": title, "book_id": book_id})
+            db1.commit()
+            #review1 = Reviews(review=review, score=score, title=title, book_id=book_id)
+            #b.session.add(review1)
+            #db.session.commit()
+            return render_template("submitted.html", message="Review submitted")
 
 
 def main():
     res = requests.get("https://www.goodreads.com/book/review_counts.json",
-                       params={"key": "XpVcEz3pf5hXpJ7pzhMng", "isbns": "9781632168146"})
+                       params={"key": "XpVcEz3pf5hXpJ7pzhMng", "values": "9781632168146"})
     print(res.json())
 
 

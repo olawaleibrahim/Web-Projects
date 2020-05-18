@@ -15,7 +15,7 @@ Search Results
                     {% for book in books %}
                     <li>
                         <a href="{{ url_for('book', book_id=book.idd) }}", method="POST">
-                            {{book.title}} written by {{book.author}} with {{book.isbn}} number
+                            {{book.title}}
                         </a>
                     </li>
                     {% endfor %}
