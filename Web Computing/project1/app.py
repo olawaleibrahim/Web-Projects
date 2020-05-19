@@ -39,7 +39,6 @@ def home():
         # db.session.add(user)
         #print(f'{first_name} {last_name}, {email} and {len(password)*"*"} are recorded')
         # db.session.commit()
-        
 
         db1.execute('INSERT INTO users2 (email, password, first_name, last_name) VALUES (:email, :password, :first_name, :last_name)',
                     {"email": email, "password": password, "first_name": first_name, "last_name": last_name})
@@ -63,7 +62,7 @@ def books():
         session['email'] = email
 
         if db1.execute("SELECT * FROM users2 WHERE email=:email AND password=:password", {"email": email, "password": password}).fetchone():
-            
+
             return render_template("books.html")
         else:
             return render_template("error.html", message="Incorrect login details")
@@ -84,7 +83,7 @@ def book(book_id):
 
         res1 = requests.get("https://www.goodreads.com/book/review_counts.json",
                             params={"key": key, "isbns": str(isbn1)})
-        
+
         goodreads = res1.json()
         averageratings = goodreads["books"][0]["average_rating"]
         workcounts = goodreads["books"][0]["work_ratings_count"]
@@ -123,12 +122,12 @@ def results():
         #title = request.form.get("title")
         #author = request.form.get("author")
 
-        if (db1.execute("SELECT * FROM books WHERE isbn=:value", {"value": value}).rowcount == 0) and (db1.execute("SELECT * FROM books WHERE title=:value", {"value": value}).rowcount == 0) and (db1.execute("SELECT * FROM books WHERE author=:value", {"value": value}).rowcount == 0):
+        if (db1.execute("SELECT * FROM books WHERE isbn ILIKE :value", {"value": "%"+value+"%"}).rowcount == 0) and (db1.execute("SELECT * FROM books WHERE title ILIKE :value", {"value": "%"+value+"%"}).rowcount == 0) and (db1.execute("SELECT * FROM books WHERE author ILIKE :value", {"value": "%"+value+"%"}).rowcount == 0):
             return render_template("error.html", message="No book with matching records")
 
         else:
-            books = db1.execute("SELECT * FROM books WHERE author LIKE :value OR title LIKE :value OR isbn LIKE :value", {
-                                "value": value, "value": value, "value": value}).fetchall()
+            books = db1.execute(
+                "SELECT * FROM books WHERE author ILIKE :author OR title ILIKE :title OR isbn ILIKE :isbn", {"title": "%"+value+"%", "author": "%"+value+"%", "isbn": "%"+value+"%"}).fetchall()
 
             #books = Books.query.filter(Books.title.like('%title%')).all()
             db.session.commit()
@@ -167,6 +166,7 @@ def submitted():
             # db.session.commit()
             return render_template("submitted.html", message="Review submitted")
 
+
 @app.route('/logout')
 def logout():
     if 'email' in session:
@@ -174,6 +174,7 @@ def logout():
         return render_template("logout.html", message="You have been successfully logged out")
     else:
         return render_template("error.html", message="User is already logged out")
+
 
 @app.route('/api/book/<int:book_id>')
 def api(book_id):
@@ -196,7 +197,7 @@ def api(book_id):
             average_score = review["books"][0]["average_rating"]
 
             return jsonify({
-                "title":title,
+                "title": title,
                 "isbn": isbn,
                 "author": author,
                 "year": year,
@@ -206,7 +207,7 @@ def api(book_id):
 
 
 if __name__ == "__main__":
-    
+
     app.debug = True
     app.run()
 
