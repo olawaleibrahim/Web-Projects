@@ -72,3 +72,21 @@ class Reviews(db.Model):
         self.title = title
         self.book_id = book_id
         self.score = score
+
+class Loggedin(db.Model):
+    __tablename__ = "loggedin"
+    counter = 1
+
+    id = db.Column(db.Integer, nullable=False, primary_key=True)
+    email = db.Column(db.String, nullable=False, unique=True)
+    password = db.Column(db.String, nullable=False)
+
+
+    def __init__(self, id, email, password):
+        self.id = Users2.counter
+        Loggedin.counter += 1
+
+        
+        self.email = email
+        self.password = password
+        

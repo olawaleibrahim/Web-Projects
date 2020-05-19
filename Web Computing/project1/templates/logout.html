@@ -1,19 +1,20 @@
 {% extends "layouts.html" %}
 
 {% block title %}
-Error
+Logged out
 {% endblock %}
 
 {% block body %}
+
 <div class="container">
     <div class="row">
         <div class="col-sm-4">
-        <h2>Error</h2>
-        {{message}}
+            {{message}}
         </div>
         <div class="col-sm-8">
             <p>Go back to <a href="{{url_for('index')}}">home page</a></p>
         </div>
     </div>
 </div>
+
 {% endblock %}
