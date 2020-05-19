@@ -41,12 +41,15 @@
                 {% for avg in avgscore %}
                 <p>The book has an average review of {{avg}}</p>
                 {% endfor %}
+                <h3>From Goodreads:</h3>
+                <p><b>Average ratings: {{averageratings}}</b></p>
+                <p><b>Work count ratings: {{workcounts}}</b></p>
             </div>
         </div>
     </div>
     <div class="col-sm-4">
         <p>Click below to signout</p>
-        <a href="{{url_for('index')}}">Logout</a>
+        <a href="{{url_for('logout')}}">Logout</a>
     </div>
 </div>
 
