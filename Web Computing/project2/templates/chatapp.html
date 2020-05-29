@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}{% endblock%}</title>
+
+        <meta name="viewport", content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet", href="./static/bootstrap.css">
+        
+        <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
+        
+        
+        <style>
+            h1 {
+                text-align: center;
+            }
+        </style>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
+                socket.on('connect', () => {
+                    document.querySelector('#form').onsubmit = () => {
+                        const selection = document.querySelector('#channel').value;
+                        socket.emit('create channel', {'selection': selection});
+                        document.querySelector('#channel').value = '';
+                        document.querySelector('#create').disabled = true;
+
+                        return false;
+                    };
+                });
+
+                socket.on('channel created', data => {
+                    const li = document.createElement('a');
+                    li.href = document.querySelector('#channel').value;
+                    li.innerHTML = `Channel ${data.selection}`;
+                    document.querySelector('#channelslink').append(li);
+                    const br = document.createElement('br');
+                    document.querySelector('#channelslink').append(br);
+                });
+            });
+        </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('#create').disabled = true;
+            document.querySelector('#channel').onkeyup = () => {
+                if (document.querySelector('#channel').value.length > 0) 
+                    document.querySelector('#create').disabled = false;
+                else
+                    document.querySelector('#create').disabled = true;
+            
+                };
+            
+                document.querySelector('#form').onsubmit = () => {
+                    const li = document.createElement('a');
+                    li.href = document.querySelector('#channel').value;
+                    li.innerHTML = document.querySelector('#channel').value;
+                    document.querySelector('#channels').append(li);
+                    const br = document.createElement('br');
+                    document.querySelector('#channels').append(br)
+                    document.querySelector('#channel').value = '';
+                    document.querySelector('#create').disabled = true;
+
+                    return false;
+                }
+
+            });
+        </script>
+        
+    </head>
+    <body style="border-style: double;">
+        <div class="container">
+            <div class="page-header">
+                <h1>Live Chat App</h1>
+            </div>
+            <div class="container">
+                <h2>Welcome {{username}}</h2></br>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <p>Create a new channel below</p>
+                            <form id="form">
+                                <input id="channel" type="text" placeholder="Channel name">
+                                <button id="create" class="btn btn-primary">Create</button>
+                            </form>
+                        </div>
+                        <div class="col-sm-4">
+                            <p>Join an existing channel below:</p>
+                            <div id="channels">
+
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <p>Join an existing channel below:</p>
+                            <ul id="channelslink">
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </body>
+</html>

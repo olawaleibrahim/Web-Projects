@@ -3,7 +3,7 @@ import os
 from flask import Flask, render_template, request
 from models import *
 
-DATABASE_URL = "postgresql://postgres:Toronto1.@localhost:5432/projects"
+DATABASE_URL = "postgres://bbfndfqfhqjwjk:6edcaed6c232e33cb00795391243fc3023c01c875dc07cbe79b82549f3bca9c3@ec2-52-71-55-81.compute-1.amazonaws.com:5432/dcgps6isnvdfga"
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = DATABASE_URL

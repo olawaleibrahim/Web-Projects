@@ -1,0 +1,25 @@
+{% extends "layouts.html" %}
+
+{% block title %}
+Chat App
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="container">
+                <h3>Chat Live with people here. </br> Sign in below with a username</h3>
+            </div>
+            <div class="container">
+                <form action="{{ url_for( 'chatapp')}}", method="POST">
+                    <input name="username" type="text" placeholder="Your Display Name">
+                    <button id="button" class="btn btn-primary">Proceed</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

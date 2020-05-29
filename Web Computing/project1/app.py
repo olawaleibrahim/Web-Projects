@@ -10,7 +10,7 @@ from models import *
 
 app = Flask(__name__)
 app.secret_key = 'some secret key'
-DATABASE_URL = "postgresql://postgres:Toronto1.@localhost:5432/projects"
+DATABASE_URL = "postgres://bbfndfqfhqjwjk:6edcaed6c232e33cb00795391243fc3023c01c875dc07cbe79b82549f3bca9c3@ec2-52-71-55-81.compute-1.amazonaws.com:5432/dcgps6isnvdfga"
 db = SQLAlchemy()
 app.config["SQLALCHEMY_DATABASE_URI"] = DATABASE_URL
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
@@ -42,6 +42,7 @@ def home():
 
         db1.execute('INSERT INTO users2 (email, password, first_name, last_name) VALUES (:email, :password, :first_name, :last_name)',
                     {"email": email, "password": password, "first_name": first_name, "last_name": last_name})
+        db.session.commit()
 
         db1.commit()
 
@@ -70,12 +71,12 @@ def books():
 
 @app.route('/books/<int:book_id>', methods=['POST', 'GET'])
 def book(book_id):
-    book = db1.execute("SELECT * FROM books1 WHERE idd=:idd",
+    book = db1.execute("SELECT * FROM books WHERE idd=:idd",
                        {"idd": book_id}).fetchone()
     if book == None:
         return render_template("error.html", message="No such book exist")
     else:
-        avg1 = db1.execute("SELECT * FROM books1 WHERE idd=:idd",
+        avg1 = db1.execute("SELECT * FROM books WHERE idd=:idd",
                            {"idd": book_id}).fetchone()
         isbn1 = str(avg1.isbn)
 
@@ -101,9 +102,11 @@ def book(book_id):
 
         for review in review1:
             reviews.append(review.review)
+            db.session.commit()
             db1.commit()
         for review in review1:
             scores.append(review.score)
+            db.session.commit()
             db1.commit()
         for i in avg:
             avgscore.append(i)

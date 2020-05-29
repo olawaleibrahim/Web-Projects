@@ -4,7 +4,7 @@ from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 
-DATABASE_URL = "postgresql://postgres:Toronto1.@localhost:5432/projects"
+DATABASE_URL = "postgres://bbfndfqfhqjwjk:6edcaed6c232e33cb00795391243fc3023c01c875dc07cbe79b82549f3bca9c3@ec2-52-71-55-81.compute-1.amazonaws.com:5432/dcgps6isnvdfga"
 
 engine = create_engine(DATABASE_URL)
 db1 = scoped_session(sessionmaker(bind=engine))
