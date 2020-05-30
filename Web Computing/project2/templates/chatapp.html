@@ -4,12 +4,27 @@
         <title>{% block title %}{% endblock%}</title>
 
         <meta name="viewport", content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet", href="./static/bootstrap.css">
+        
+        <link rel="stylesheet", href="./static/style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         
         <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
         
         
         <style>
+            
+            .channels {
+                width: fit-content;
+                height: fit-content;
+                border-color: black;
+            };
+            .sections {
+                border-style: dotted;
+                border-color: black;
+                background-color: black;
+            }
             h1 {
                 text-align: center;
             }
@@ -30,7 +45,9 @@
 
                 socket.on('channel created', data => {
                     const li = document.createElement('a');
+                    li.className = "container"
                     li.href = document.querySelector('#channel').value;
+                    li.style.borderStyle = "dotted";
                     li.innerHTML = `Channel ${data.selection}`;
                     document.querySelector('#channelslink').append(li);
                     const br = document.createElement('br');
@@ -50,7 +67,8 @@
                 };
             
                 document.querySelector('#form').onsubmit = () => {
-                    const li = document.createElement('a');
+                    const li = document.createElement('div');
+                    li.className = "well"
                     li.href = document.querySelector('#channel').value;
                     li.innerHTML = document.querySelector('#channel').value;
                     document.querySelector('#channels').append(li);
@@ -66,37 +84,51 @@
         </script>
         
     </head>
-    <body style="border-style: double;">
-        <div class="container">
+    <body style="border-style: dobble;">
+        <div class="container-fluid">
             <div class="page-header">
                 <h1>Live Chat App</h1>
             </div>
-            <div class="container">
-                <h2>Welcome {{username}}</h2></br>
-                <div class="container">
+            <div class="container-fluid" style="background-color: rgb(47, 71, 73);">
+                <div class="row">
+                    <div id="head" class="col-sm-8">
+                        <div style="background-color: seashell;" class="well">
+                            <h2>FLACK</h2>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <form action="{{ url_for('index')}}" style="align-content: flex-end; align-self: flex-end; text-align: right;">
+                            <label style="background-color: seashell;">{{username}}</label>
+                            <button class="btn btn-primary">Logout</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div id="border1" class="container-fluid">
+                <h2>User {{username}}</h2></br>
+                <div class="container-fluid">
                     <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-12">
                             <p>Create a new channel below</p>
                             <form id="form">
                                 <input id="channel" type="text" placeholder="Channel name">
                                 <button id="create" class="btn btn-primary">Create</button>
                             </form>
                         </div>
-                        <div class="col-sm-4">
-                            <p>Join an existing channel below:</p>
-                            <div id="channels">
+                    </div>
+                </div>
+            </div>
 
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <p>Join an existing channel below:</p>
-                            <ul id="channelslink">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div id="channelslink">
 
-                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
+                            
         </div>
         
     </body>
