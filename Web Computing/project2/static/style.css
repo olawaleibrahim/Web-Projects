@@ -1,0 +1,34 @@
+#heads {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: fit-content;
+}
+
+#head {
+    padding-left: 2px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    height: fit-content;
+    width: 40%;
+}
+
+#border1 {
+    border-style: dotted;
+    border-color: brown;
+}
+
+h1, h3 {
+    text-align: center;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  .full-height {
+    height: 100%;
+    
+  }
