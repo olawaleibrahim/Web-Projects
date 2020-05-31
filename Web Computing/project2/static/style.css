@@ -23,4 +23,8 @@ h1, h3 {
     text-align: center;
 }
 
-
+#chat-area {
+  height: 45vh;
+  width: 45%;
+  background-color: rgb(223, 228, 250);
+}
