@@ -3,7 +3,7 @@
     <head>
         <title>{% block title %}{% endblock%}</title>
 
-        <meta name="viewport", content="width=device-width, height=device-height initial-scale=1.0">
+        <meta name="viewport", content="width=device-width height=device-height initial-scale=1.0">
         
         <link rel="stylesheet", href="./static/style.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -11,52 +11,12 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         
         <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
+        <script src="{{ url_for('static', filename='index.js') }}"></script>
         
-        
-        <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
-                socket.on('connect', () => {
-                    document.querySelector('#form').onsubmit = () => {
-                        const selection = document.querySelector('#channel').value;
-                        socket.emit('create channel', {'selection': selection});
-                        document.querySelector('#channel').value = '';
-                        document.querySelector('#create').disabled = true;
-
-                        return false;
-                    };
-                });
-
-                socket.on('channel created', data => {
-                    const li = document.createElement('a');
-                    li.className = "container"
-                    li.href = document.querySelector('#channel').value;
-                    li.style.borderStyle = "double";
-                    li.innerHTML = `Channel ${data.selection}`;
-                    document.querySelector('#channelslink').append(li);
-                    const br = document.createElement('br');
-                    document.querySelector('#channelslink').append(br);
-                });
-            });
-        </script>
-        <script>
-            document.addEventListener('DOMContentLoaded', () => {
-            document.querySelector('#create').disabled = true;
-            document.querySelector('#channel').onkeyup = () => {
-                if (document.querySelector('#channel').value.length > 0) 
-                    document.querySelector('#create').disabled = false;
-                else
-                    document.querySelector('#create').disabled = true;
-            
-                };
-            
-
-            });
-        </script>
         
     </head>
-    <body style="border-style: double;">
-        <div class="container-fluid">
+    <body style="border-style: double; height: 97vh;">
+        <div class="container-fluid fixed-top">
             <div style="height: 30px;" class="page-header">
                 <h1>Live Chat App</h1>
             </div>
@@ -97,7 +57,7 @@
                                 <div style="border-style: dashed;">
                                     <h3><b>Channels</b></h3>
                                 </div>
-                                <div style="width:300px; height: 180px; overflow: auto;" class="container" id="channelslink">
+                                <div style="width:300px; height: 40vh; overflow: auto;" class="container" id="channelslink">
         
                                 </div>
                             </div>
@@ -108,7 +68,25 @@
                             <div style="border-style: dashed;">
                                 <h3><b>Messages</b></h3>
                             </div>
-                        </div>
+                            <div style="height: 50vh;">
+                                <div>
+                                    &nbsp;
+                                </div>
+                                <div class="container fixed-bottom">
+                                    <div class="row">
+                                        <div style="height: 45vh; width: 200px; overflow: auto;" id="alrt">
+                                            No messages here
+                                        </div>
+                                        <div>
+                                            <div class="container" style="background-color: rgb(223, 228, 250); width: 100vh; height: 50%;">
+                                                
+                                                fghj
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
                     </div>
                 </div>
             </div>
