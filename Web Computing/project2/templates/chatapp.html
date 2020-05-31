@@ -25,7 +25,7 @@
                 border-color: black;
                 background-color: black;
             }
-            h1 {
+            h1, h3 {
                 text-align: center;
             }
         </style>
@@ -47,7 +47,7 @@
                     const li = document.createElement('a');
                     li.className = "container"
                     li.href = document.querySelector('#channel').value;
-                    li.style.borderStyle = "dotted";
+                    li.style.borderStyle = "double";
                     li.innerHTML = `Channel ${data.selection}`;
                     document.querySelector('#channelslink').append(li);
                     const br = document.createElement('br');
@@ -66,33 +66,20 @@
             
                 };
             
-                document.querySelector('#form').onsubmit = () => {
-                    const li = document.createElement('div');
-                    li.className = "well"
-                    li.href = document.querySelector('#channel').value;
-                    li.innerHTML = document.querySelector('#channel').value;
-                    document.querySelector('#channels').append(li);
-                    const br = document.createElement('br');
-                    document.querySelector('#channels').append(br)
-                    document.querySelector('#channel').value = '';
-                    document.querySelector('#create').disabled = true;
-
-                    return false;
-                }
 
             });
         </script>
         
     </head>
-    <body style="border-style: dobble;">
+    <body style="border-style: double;">
         <div class="container-fluid">
-            <div class="page-header">
+            <div style="height: 30px;" class="page-header">
                 <h1>Live Chat App</h1>
             </div>
-            <div class="container-fluid" style="background-color: rgb(47, 71, 73);">
+            <div class="container-fluid" style="background-color: rgb(47, 71, 73); height: fit-content;">
                 <div class="row">
                     <div id="head" class="col-sm-8">
-                        <div style="background-color: seashell;" class="well">
+                        <div style="background-color: seashell; height: fit-content;" class="well">
                             <h2>FLACK</h2>
                         </div>
                     </div>
@@ -110,10 +97,15 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <p>Create a new channel below</p>
-                            <form id="form">
-                                <input id="channel" type="text" placeholder="Channel name">
-                                <button id="create" class="btn btn-primary">Create</button>
-                            </form>
+                            
+                                <form id="form">
+                                    <input id="channel" type="text" placeholder="Channel name">
+                                    <button id="create" class="btn btn-primary">Create</button>
+                                </form>
+                            
+                            <div>
+
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -121,9 +113,17 @@
 
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-sm-4">
-                        <div id="channelslink">
+                    <div class="col-sm-3" style="border-right-style: dashed;" >
+                        <div style="border-style: dashed;">
+                            <h3><b>Channels</b></h3>
+                        </div>
+                        <div style="width:300px; height: 180px; overflow: auto;" class="container" id="channelslink">
 
+                        </div>
+                    </div>
+                    <div class="col-sm-9">
+                        <div style="border-style: dashed;">
+                            <h3><b>Messages</b></h3>
                         </div>
                     </div>
                 </div>
