@@ -15,85 +15,91 @@
         
         
     </head>
-    <body style="border-style: double; height: 97vh;">
-        <div class="container-fluid fixed-top">
-            <div style="height: 30px;" class="page-header">
-                <h1>Live Chat App</h1>
-            </div>
-            <div class="container-fluid" style="background-color: rgb(47, 71, 73); height: fit-content;">
-                <div class="row">
-                    <div id="heads" class="col-sm-8">
-                        <div id="head" style="background-color: seashell; height: fit-content;" class="well">
-                            <h2>FLACK</h2>
+    <div class="container-fluid fixed-top" style="height: 97vh;">
+        <body style="border-style: double;">
+            <div class="container-fluid fixed-top">
+                <div style="height: 30px;" class="page-header">
+                    <h1>Live Chat App</h1>
+                </div>
+                <div class="container-fluid" style="background-color: rgb(47, 71, 73); height: fit-content;">
+                    <div class="row">
+                        <div id="heads" class="col-sm-8">
+                            <div id="head" style="background-color: seashell; height: fit-content;" class="well">
+                                <h2>FLACK</h2>
+                            </div>
+                        </div>
+                        <div style="align-content: flex-end; align-self: flex-end;" class="col-sm-4">
+                            <form action="{{ url_for('index')}}" style="align-content: flex-end; align-self: flex-end; text-align: right;">
+                                <label style="background-color: seashell;">{{username}}</label>
+                                <button class="btn btn-primary">Logout</button>
+                            </form>
                         </div>
                     </div>
-                    <div style="align-content: flex-end; align-self: flex-end;" class="col-sm-4">
-                        <form action="{{ url_for('index')}}" style="align-content: flex-end; align-self: flex-end; text-align: right;">
-                            <label style="background-color: seashell;">{{username}}</label>
-                            <button class="btn btn-primary">Logout</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="container-fluid">
-                <div id="#head">
-                    &nbsp;
                 </div>
                 <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <div class="container">
-                                <p>Create a new channel below</p>
-                                
-                                    <form id="form">
-                                        <input id="channel" type="text" placeholder="Channel name">
-                                        <button id="create" class="btn btn-primary">Create</button>
-                                    </form>
-                            </div>
-                            <div>
-                                &nbsp;
-                            </div>
-                            <div>
-                                <div style="border-style: dashed;">
-                                    <h3><b>Channels</b></h3>
+                    <div id="#head">
+                        &nbsp;
+                    </div>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="container-fluid">
+                                    <p>Create a new channel below</p>
+                                    
+                                        <form id="form">
+                                            <input id="channel" type="text" placeholder="Channel name">
+                                            <button id="create" class="btn btn-primary">Create</button>
+                                        </form>
                                 </div>
-                                <div style="width:300px; height: 40vh; overflow: auto;" class="container" id="channelslink">
-        
-                                </div>
-                            </div>
-                            
-                            
-                        </div>
-                        <div class="col-sm-9">
-                            <div style="border-style: dashed;">
-                                <h3><b>Messages</b></h3>
-                            </div>
-                            <div style="height: 50vh;">
                                 <div>
                                     &nbsp;
                                 </div>
-                                <div class="container fixed-bottom">
-                                    <div class="row">
-                                        <div style="height: 45vh; width: 200px; overflow: auto;" id="alrt">
-                                            No messages here
-                                        </div>
-                                        <div>
-                                            <div class="container" style="background-color: rgb(223, 228, 250); width: 100vh; height: 50%;">
+                                <div>
+                                    <div style="border-style: dashed;">
+                                        <h3><b>Channels</b></h3>
+                                    </div>
+                                    <div style="width:40vh; height: 40vh; overflow: auto;" class="container" id="channelslink">
+            
+                                    </div>
+                                </div>
+                                
+                                
+                            </div>
+                            <div class="col-sm-9">
+                                <div style="border-style: dashed;">
+                                    <h3><b>Messages</b></h3>
+                                </div>
+                                <div style="height: 50vh;">
+                                    <div>
+                                        &nbsp;
+                                    </div>
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div style="height: 45vh; width: 95%; overflow: auto;" id="alrt">
                                                 
-                                                fghj
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <div style="background-color: rgb(223, 228, 250); width: 70%;">
+                                                    
+                                                    fghj</br>
+                                                    afslbl
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            
+                                
+                        </div>
                     </div>
                 </div>
-            </div>
 
+                
+                                
+            </div>
             
-                            
-        </div>
-        
-    </body>
+        </body>
+    </div>
 </html>
