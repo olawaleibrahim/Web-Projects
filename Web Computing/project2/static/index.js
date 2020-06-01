@@ -40,7 +40,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     socket.on('message bc', data => {
         const div = document.createElement('div');
-        div.className = 'alert alert-primary';
+        div.className = 'alert alert-danger';
+        div.style.height = "auto";
+        div.style.width = "fit-content";
         div.innerHTML = `${data.message}`;
         document.querySelector('#message-area').append(div);
     });
