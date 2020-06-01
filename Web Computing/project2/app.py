@@ -23,3 +23,8 @@ def chatapp():
 def channel(data):
     selection = data['selection']
     emit("channel created", {'selection': selection}, broadcast=True)
+
+@socketio.on('message sent')
+def message(data):
+    message = data['message']
+    emit('message bc', {'message': message}, broadcast=True)

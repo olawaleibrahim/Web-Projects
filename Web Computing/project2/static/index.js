@@ -1,4 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const height = window.innerHeight;
+    document.querySelector('#page').style.height = height;
+    document.querySelector('#page').style.width = width;
+})
+
+document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('#create').disabled = true;
     document.querySelector('#channel').onkeyup = () => {
         if (document.querySelector('#channel').value.length > 0) 
@@ -7,9 +13,38 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelector('#create').disabled = true;
     
         };
+
+    document.querySelector('#send').disabled = true;
+    document.querySelector('#message').onkeyup = () => {
+        if (document.querySelector('#message').value.length > 0) 
+            document.querySelector('#send').disabled = false;
+        else
+            document.querySelector('#send').disabled = true;
     
+        };
 
     });
+
+document.addEventListener('DOMContentLoaded', () => {
+    var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
+    socket.on('connect', () => {
+        document.querySelector('#form1').onsubmit = () => {
+            const message = document.querySelector('#message').value;
+            socket.emit('message sent', {'message': message});
+            document.querySelector('#message').value = '';
+            document.querySelector('#send').disabled = true;
+
+            return false;
+        };
+
+    });
+    socket.on('message bc', data => {
+        const div = document.createElement('div');
+        div.className = 'alert alert-primary';
+        div.innerHTML = `${data.message}`;
+        document.querySelector('#message-area').append(div);
+    });
+});
 
 document.addEventListener('DOMContentLoaded', () => {
     var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
@@ -45,4 +80,5 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('#alrt').append(alrt);
     };
 });
+
 

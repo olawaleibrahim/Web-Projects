@@ -3,7 +3,7 @@
     <head>
         <title>{% block title %}{% endblock%}</title>
 
-        <meta name="viewport", content="width=device-width height=device-height initial-scale=1.0">
+         <meta name="viewport", content="width=device-width, initial-scale=1.0">
         
         <link rel="stylesheet", href="./static/style.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -15,7 +15,7 @@
         
         
     </head>
-    <div class="container-fluid fixed-top" style="height: 97vh;">
+    <div id="page" class="container-fluid fixed-top">
         <body style="border-style: double;">
             <div class="container-fluid fixed-top">
                 <div style="height: 30px;" class="page-header">
@@ -69,38 +69,32 @@
                                 <div style="border-style: dashed;">
                                     <h3><b>Messages</b></h3>
                                 </div>
-                                <div style="height: 50vh;">
+                                <div style="height: 30vh;">
                                     <div>
                                         &nbsp;
                                     </div>
                                     <div class="container">
                                         <div class="row">
-                                            <div id="alrt" class="col-sm-4">
+                                            <div style="height: 50vh; overflow: auto;" id="alrt" class="col-sm-4">
                                                 &nbsp;
                                             </div>
-                                            <div id="chat-area" class="col-sm-8">
-                                                dfklbd
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-4">
-                                                <div style="height: 45vh; width: 95%; overflow: auto;" id="alrt">
-                                                
+                                            <div style="height: 50vh;" id="chat-area" class="col-sm-8">
+                                                <div style="background-color: rgb(182, 182, 204); height: 40vh; overflow: auto;" class="row" id="message-area">
+
                                                 </div>
-                                            </div>
-                                            <div class="col-sm-8">
-                                                <div style="background-color: rgb(223, 228, 250); width: 65%;">
-                                                    <div class="row">
+                                                <div class="row" style="background-color: rgb(27, 12, 15); height: 10vh;">
+                                                    <form id="form1", method="POST">
                                                         <div class="col-sm-10">
                                                             <input type="text" placeholder="Enter your message here" id="message">
                                                         </div>
                                                         <div class="col-sm-2">
-                                                            <button id="send" class="btn btn-primary">Send message</button>
+                                                            <button id="send" class="btn btn-primary">Send</button>
                                                         </div>
-                                                    </div>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
+                                        
                                     </div>
                                 </div>
                             </div>

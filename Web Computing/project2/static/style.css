@@ -28,3 +28,13 @@ h1, h3 {
   width: 45%;
   background-color: rgb(223, 228, 250);
 }
+
+#send {
+  width: 10vh;
+  height: 10vh;
+}
+
+#message {
+  height: 10vh;
+  width: 70vh;
+}
