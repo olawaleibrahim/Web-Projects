@@ -13,10 +13,11 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
         <script src="{{ url_for('static', filename='index.js') }}"></script>
         
-        
+    
+
     </head>
     <div id="page" class="container-fluid fixed-top">
-        <body style="border-style: double;">
+        <body style="border-style: double; height: 97vh;">
             <div class="container-fluid fixed-top">
                 <div style="height: 30px;" class="page-header">
                     <h1>Live Chat App</h1>
@@ -75,8 +76,8 @@
                                     </div>
                                     <div class="container">
                                         <div class="row">
-                                            <div style="height: 50vh; overflow: auto;" id="alrt" class="col-sm-4">
-                                                &nbsp;
+                                            <div style="height: 50vh; overflow: auto;" id="alert" class="col-sm-4">
+                                                
                                             </div>
                                             <div style="height: 50vh; width: 80vh;" id="chat-area" class="col-sm-8">
                                                 <div style="background-color: rgb(236, 236, 245); height: 40vh; width: 80vh; overflow: auto;" class="row" id="message-area">

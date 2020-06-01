@@ -1,4 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+    console.log('----');
+    console.log('window.innerHeight');
+    console.log('window.innerWidth');
+    console.log('window.scrollY');
+    console.log('document.body.offsetHeight');
+
     const height = window.innerHeight;
     document.querySelector('#page').style.height = height;
     document.querySelector('#page').style.width = width;
@@ -64,22 +71,23 @@ document.addEventListener('DOMContentLoaded', () => {
     socket.on('channel created', data => {
         const li = document.createElement('a');
         li.className = "container"
-        li.href = document.querySelector('#channel').value;
+        li.href = '#';
         li.style.borderStyle = "double";
-        li.innerHTML = `Channel ${data.selection}`;
+        li.innerHTML = `${data.selection} channel`;
         document.querySelector('#channelslink').append(li);
         const br = document.createElement('br');
         document.querySelector('#channelslink').append(br);
     });
 });
 
+
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('#create').onclick = () => {
-        const alrt = document.createElement('div');
+        const alert = document.createElement('div');
         const channel = document.querySelector('#channel').value;
-        alrt.innerHTML = `${channel} succesfully created`;
-        alrt.className = 'alert alert-success'
-        document.querySelector('#alrt').append(alrt);
+        alert.innerHTML = `${channel} succesfully created`;
+        alert.className = 'alert alert-success'
+        document.querySelector('#alert').append(alert);
     };
 });
 
