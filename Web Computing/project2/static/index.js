@@ -34,6 +34,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener('DOMContentLoaded', () => {
     const user = document.querySelector('#user').innerHTML;
+    document.querySelector('#send').onclick = () => {
+        var user1 = document.querySelector('#user').innerHTML;
+        localStorage.setItem('user1', user1);
+    };
     
     var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
     socket.on('connect', () => {
@@ -62,7 +66,8 @@ document.addEventListener('DOMContentLoaded', () => {
         span.style.fontSize = '10px'
         var today = new Date();
         var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-        span.innerHTML = `- ${user} ${time}`;
+        var user1 = localStorage.getItem('user1');
+        span.innerHTML = `- ${user1} ${time}`;
         span.style.color = "grey";
         div.append(span);
 
