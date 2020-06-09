@@ -33,6 +33,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 document.addEventListener('DOMContentLoaded', () => {
+    const user = document.querySelector('#user').innerHTML;
+    
     var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
     socket.on('connect', () => {
         document.querySelector('#form1').onsubmit = () => {
@@ -49,8 +51,30 @@ document.addEventListener('DOMContentLoaded', () => {
         const div = document.createElement('div');
         div.className = 'alert alert-danger';
         div.style.height = "auto";
-        div.style.width = "fit-content";
-        div.innerHTML = `${data.message}`;
+
+        const div1 = document.createElement('div');
+        div1.style.color = "black";
+        div1.innerHTML = `${data.message}`;
+        div.append(div1);
+
+        const span = document.createElement('div');
+        span.className = 'user';
+        span.style.fontSize = '10px'
+        var today = new Date();
+        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        span.innerHTML = `- ${user} ${time}`;
+        span.style.color = "grey";
+        div.append(span);
+
+        const hide = document.createElement('button');
+        hide.className = 'delete';
+        hide.innerHTML = 'Delete';
+        div.append(hide);
+
+        hide.onclick = function() {
+            this.parentElement.remove();
+        };
+
         document.querySelector('#message-area').append(div);
     });
 });
@@ -90,5 +114,4 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('#alert').append(alert);
     };
 });
-
 
